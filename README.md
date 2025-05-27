@@ -11,6 +11,9 @@ Find the Publication here: [https://openreview.net/pdf?id=3vmB43oqIO](https://op
 This is an updated version for the manuscript:
 "AI-detected tumor-infiltrating lymphocytes for predicting outcomes in anti-PD1 based treated melanoma."
 
+The weights from this model are created on an updated version of the Panoptic Segmentation of nUclei and tissue in advanced MelanomA (PUMA) dataset. 
+Find the publication of the PUMA dataset here: [PUMA dataset - GigaScience](https://doi.org/10.1093/gigascience/giaf011)
+
 ## Setup
 
 Environments for train and inference are the same so if you already have set the environment up for training, you can use it for inference as well.
@@ -36,7 +39,7 @@ By specifying one of the ID's listed, weights are **automatically** downloaded a
 | PanNuke | "pannuke_convnextv2_tiny_1"  | [Tiny Fold 1](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_1.zip?download=1) |
 |   | "pannuke_convnextv2_tiny_2"  | [Tiny Fold 2](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_2.zip?download=1) |
 |   | "pannuke_convnextv2_tiny_3"  | [Tiny Fold 3](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_3.zip?download=1) |
-|   | "	"puma_convnextv2_base"     | [Base](https://zenodo.org/records/15526308) |
+|   | "puma_convnextv2_base"     | [Base](https://zenodo.org/records/15526308) |
 
 If you are manually downloading weights, unzip them in the directory, such that the folder (e.g. ```lizard_convnextv2_large```) sits in the same directory as ```main.py```.
 
@@ -104,11 +107,7 @@ After running the main pipeline, you will have:
 - Class-lookup tables with centroids
 - `.tsv` files for QuPath visualization
 
-Example analysis workflows are demonstrated in `sample_analysis.ipynb`.
-
-For advanced downstream processing, use the following scripts:
-
----
+For further downstream processing the following scripts are available
 
 ## 1. Convert TSV to QuPath-Compatible GeoJSON
 
@@ -164,4 +163,18 @@ and
   year={2022},
   pages={1-4},
   doi={10.1109/ISBIC56247.2022.9854551}}
+```
+
+and
+
+```
+@article{schuiveling2025novel,
+author={Mark Schuiveling and Hong Liu and Daniel Eek and Gerben E Breimer and Karijn P M Suijkerbuijk and Willeke A M Blokx and Mitko Veta},
+title={A novel dataset for nuclei and tissue segmentation in melanoma with baseline nuclei segmentation and tissue segmentation benchmarks},
+journal={GigaScience},
+volume={14},
+year={2025},
+article={giaf011},
+doi={10.1093/gigascience/giaf011}
+}
 ```
