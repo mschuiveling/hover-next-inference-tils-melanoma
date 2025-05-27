@@ -16,10 +16,6 @@ Find the publication of the PUMA dataset here: [PUMA dataset - GigaScience](http
 
 ## Setup
 
-Environments for train and inference are the same so if you already have set the environment up for training, you can use it for inference as well.
-
-Otherwise: 
-
 ```bash
 conda env create -f environment.yml
 conda activate hovernext
@@ -125,7 +121,7 @@ Replace "directory_containing_output_folders_from_main" with the path to your pi
 2. Filter Nuclei in Tumor Area
 Script: scripts_melanoma_analysis/02_filter_nuclei_tumor_area.py
 Purpose:
-Filter nuclei GeoJSONs using tissue annotation files to keep only nuclei within annotated tumor areas (and, for instance, exclude necrosis). Outputs filtered .geojson and .csv files for further analysis.
+Filter nuclei GeoJSONs using tissue annotation files to keep only nuclei within annotated tumor areas (and, for instance, exclude necrosis). Outputs filtered `.geoJSON` and `.csv` files for further analysis.
 
 Usage:
 ```bash
