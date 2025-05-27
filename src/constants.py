@@ -5,6 +5,9 @@ MIN_THRESHS_LIZARD = [30, 30, 20, 20, 30, 30, 15]
 MAX_THRESHS_LIZARD = [5000, 5000, 5000, 5000, 5000, 5000, 5000]
 MIN_THRESHS_PANNUKE = [10, 10, 10, 10, 10]
 MAX_THRESHS_PANNUKE = [20000, 20000, 20000, 3000, 10000]
+BEST_MIN_THRESHS_PUMA = [30,     50,     50]  # adjusted for 10 classes
+BEST_MAX_THRESHS_PUMA = [1500,   5000,   5000]  # adjusted for 10 classes
+
 
 # Maximal size of holes to remove from a nucleus
 MAX_HOLE_SIZE = 128
@@ -28,6 +31,13 @@ COLORS_PANNUKE = [
     [0, 255, 0],  # epi
 ]
 
+COLORS_PUMA = [
+    [0, 127, 255],    # Bright Blue/Cyan, TILs
+    [255, 0, 0],      # Red, tumor
+    [255, 179, 102],  # Light Orange/Peach, Other
+]
+
+
 # text labels for lizard
 CLASS_LABELS_LIZARD = {
     "neutrophil": 1,
@@ -48,12 +58,19 @@ CLASS_LABELS_PANNUKE = {
     "epithelial": 5,
 }
 
+CLASS_LABELS_PUMA = {
+    "nuclei_lymphocyte": 1,
+    "nuclei_tumor": 2,
+    "nuclei_other": 3,
+}
+
 # magnifiation and resolutions for WSI dataloader
 LUT_MAGNIFICATION_X = [10, 20, 40, 80]
 LUT_MAGNIFICATION_MPP = [0.97, 0.485, 0.2425, 0.124]
 
 CONIC_MPP = 0.5
 PANNUKE_MPP = 0.25
+PUMA_MPP = 0.2263
 
 # parameters for test time augmentations, do not change
 TTA_AUG_PARAMS = {
@@ -74,4 +91,5 @@ VALID_WEIGHTS = [
     "pannuke_convnextv2_tiny_1",
     "pannuke_convnextv2_tiny_2",
     "pannuke_convnextv2_tiny_3",
+    "puma_convnextv2_base"
 ]

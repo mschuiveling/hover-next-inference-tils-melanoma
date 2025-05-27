@@ -11,12 +11,21 @@ from src.constants import (
     COLORS_PANNUKE,
     CONIC_MPP,
     PANNUKE_MPP,
+    COLORS_PUMA,
+    CLASS_LABELS_PUMA,
+    PUMA_MPP
 )
 
 
 def create_geojson(polygons, classids, lookup, params):
     features = []
-    colors = COLORS_PANNUKE if params["pannuke"] else COLORS_LIZARD 
+    if params.get("puma", False):
+        colors = COLORS_PUMA
+    elif params.get("pannuke", False):
+        colors = COLORS_PANNUKE
+    else:
+        colors = COLORS_LIZARD
+
     if isinstance(classids[0], (list, tuple)):
         classids = [cid[0] for cid in classids]
     for i, (poly, cid) in enumerate(zip(polygons, classids)):
@@ -49,7 +58,12 @@ def create_geojson(polygons, classids, lookup, params):
 
 
 def create_tsvs(pcls_out, params):
-    pred_keys = CLASS_LABELS_PANNUKE if params["pannuke"] else CLASS_LABELS_LIZARD
+    if params.get("puma", False):
+        pred_keys = CLASS_LABELS_PUMA
+    elif params.get("pannuke", False):
+        pred_keys = CLASS_LABELS_PANNUKE
+    else:
+        pred_keys = CLASS_LABELS_LIZARD
 
     coord_array = np.array([[i[0], *i[1]] for i in pcls_out.values()])
     classes = list(pred_keys.keys())
@@ -111,7 +125,13 @@ def cont(x, offset=None):
 
 def create_polygon_output(pinst, pcls_out, params):
     # polygon output is slow and unwieldy, TODO
-    pred_keys = CLASS_LABELS_PANNUKE if params["pannuke"] else CLASS_LABELS_LIZARD
+    if params.get("puma", False):
+        pred_keys = CLASS_LABELS_PUMA
+    elif params.get("pannuke", False):
+        pred_keys = CLASS_LABELS_PANNUKE
+    else:
+        pred_keys = CLASS_LABELS_LIZARD
+
     # whole slide regionprops could be avoided to speed up this process...
     print("getting all detections...")
     props = [(p.label, p.image, p.bbox) for p in regionprops(np.asarray(pinst))]

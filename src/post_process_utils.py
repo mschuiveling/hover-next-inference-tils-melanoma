@@ -19,6 +19,8 @@ from src.constants import (
     MAX_HOLE_SIZE,
     LUT_MAGNIFICATION_MPP,
     LUT_MAGNIFICATION_X,
+    BEST_MIN_THRESHS_PUMA,
+    BEST_MAX_THRESHS_PUMA,
 )
 from src.data_utils import center_crop, WholeSlideDataset, NpyDataset, ImageDataset
 
@@ -154,8 +156,16 @@ def work(tcrd, ds_coord, z, params):
             params["tile_size"] : -params["tile_size"],
             params["tile_size"] : -params["tile_size"],
         ]
-    best_min_threshs = MIN_THRESHS_PANNUKE if params["pannuke"] else MIN_THRESHS_LIZARD
-    best_max_threshs = MAX_THRESHS_PANNUKE if params["pannuke"] else MAX_THRESHS_LIZARD
+    if params.get("puma", False):
+        best_min_threshs = BEST_MIN_THRESHS_PUMA
+        best_max_threshs = BEST_MAX_THRESHS_PUMA
+    elif params.get("pannuke", False):
+        best_min_threshs = MIN_THRESHS_PANNUKE
+        best_max_threshs = MAX_THRESHS_PANNUKE
+    else:
+        best_min_threshs = MIN_THRESHS_LIZARD
+        best_max_threshs = MAX_THRESHS_LIZARD
+
 
     # using apply_func to apply along axis for npy stacks
     pred_inst, skip = faster_instance_seg(
@@ -571,6 +581,12 @@ def get_pp_params(params, mit_eval=False):
                 dt = json.load(js)
                 fg_threshs.append(dt[f"best_fg_{eval_metric}"])
                 seed_threshs.append(dt[f"best_seed_{eval_metric}"])
+        elif os.path.exists(os.path.join(mod_path, "puma_test_param_dict.json")):
+            with open(os.path.join(mod_path, "puma_test_param_dict.json"), "r") as js:
+                dt = json.load(js)
+                fg_threshs.append(dt[f"best_fg_{eval_metric}"])
+                seed_threshs.append(dt[f"best_seed_{eval_metric}"])
+        
         elif mit_eval:
             with open(os.path.join(mod_path, "liz_test_param_dict.json"), "r") as js:
                 dt = json.load(js)

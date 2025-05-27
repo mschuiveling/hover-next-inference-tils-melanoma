@@ -237,9 +237,11 @@ class WholeSlideDataset(Dataset):
             and extension != ".mrxs"
             and extension != ".tif"
             and extension != ".czi"
+            and extension != ".tiff"
+            and extension != ".ndpi"
         ):
             raise NotImplementedError(
-                "Only *.svs, *.tif, *.czi, and *.mrxs files supported"
+                "Only *.svs, *.tif, *.czi, *ndpi and *.mrxs files supported"
             )
 
         # Load and create slide and affect default values

@@ -277,6 +277,8 @@ def get_inference_setup(params):
             pth = download_weights(os.path.split(pth)[-1])               
 
         checkpoint_path = f"{pth}/train/best_model"
+        if not os.path.exists(checkpoint_path):
+            checkpoint_path = f"{pth}/best_model.pth"
         mod_params = toml.load(f"{pth}/params.toml")
         params["out_channels_cls"] = mod_params["out_channels_cls"]
         params["inst_channels"] = mod_params["inst_channels"]
@@ -294,34 +296,64 @@ def get_inference_setup(params):
 
     if mod_params["dataset"] == "pannuke":
         params["pannuke"] = True
+        params["puma"] = False
+    elif mod_params["dataset"] == "puma":
+        params["pannuke"] = True
+        params["puma"] = True
     else:
         params["pannuke"] = False
-    print(
-        "processing input using",
-        "pannuke" if params["pannuke"] else "lizard",
-        "trained model",
-    )
+        params["puma"] = False
+
+    if params.get("puma", False):
+        model_str = "puma-trained model"
+    elif params.get("pannuke", False):
+        model_str = "pannuke-trained model"
+    else:
+        model_str = "lizard-trained model"
+
+    print(f"Processing input using {model_str}.")
+
 
     return params, models, augmenter, color_aug_fn
 
 def download_weights(model_code):
-    if model_code in VALID_WEIGHTS:
-        url = f"https://zenodo.org/records/10635618/files/{model_code}.zip"
-        print("downloading",model_code,"weights to",os.getcwd())
-        try:
+    if model_code not in VALID_WEIGHTS:
+        raise ValueError("Model id not found in valid identifiers, please select one of", VALID_WEIGHTS)
+    
+    if model_code == "puma_convnextv2_base":
+        urls = {
+            "best_model.pth": "https://zenodo.org/records/15526308/files/best_model",
+            "params.toml": "https://zenodo.org/records/15526308/files/params.toml",
+            "puma_test_param_dict.json": "https://zenodo.org/records/15526308/files/puma_test_param_dict.json"
+        }
+        target_dir = model_code
+        os.makedirs(target_dir, exist_ok=True)
+        for fname, url in urls.items():
+            print(f"Downloading {fname} to {os.path.join(target_dir, fname)}")
             response = requests.get(url, stream=True, timeout=15.0)
-        except requests.exceptions.Timeout:
-            print("Timeout")
+            total_size = int(response.headers.get("content-length", 0))
+            block_size = 1024
+            out_path = os.path.join(target_dir, fname)
+            with tqdm(total=total_size, unit="iB", unit_scale=True, desc=fname) as t:
+                with open(out_path, "wb") as f:
+                    for data in response.iter_content(block_size):
+                        t.update(len(data))
+                        f.write(data)
+        return model_code
+    else:
+        # Fallback to zip download for other models
+        url = f"https://zenodo.org/records/10635618/files/{model_code}.zip"
+        print("downloading", model_code, "weights to", os.getcwd())
+        response = requests.get(url, stream=True, timeout=15.0)
         total_size = int(response.headers.get("content-length", 0))
-        block_size = 1024  # 1 Kibibyte
+        block_size = 1024
         with tqdm(total=total_size, unit="iB", unit_scale=True) as t:
             with open("cache.zip", "wb") as f:
                 for data in response.iter_content(block_size):
                     t.update(len(data))
                     f.write(data)
+        import zipfile
         with zipfile.ZipFile("cache.zip", "r") as zip:
             zip.extractall("")
         os.remove("cache.zip")
         return model_code
-    else:
-        raise ValueError("Model id not found in valid identifiers, please make select one of", VALID_WEIGHTS)

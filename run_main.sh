@@ -1,0 +1,9 @@
+python main.py \
+    --input "/mnt/d/premium_dataset/IM_015_678b3f808f_m_*.ndpi" \
+    --output_root "/home/mschuive/hovernext_puma/hover_next_inference/output/" \
+    --cp "puma_convnextv2_base" \
+    --tta 4 \
+    --inf_workers 4 \
+    --pp_tiling 4 \
+    --pp_workers 4 \
+    --batch_size 32 \

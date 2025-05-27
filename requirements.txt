@@ -13,7 +13,7 @@ jupyterlab
 zarr
 tifffile
 h5py
-segmentation-models-pytorch
+segmentation-models-pytorch==0.1.0
 networkx==2.8.7
 libpysal
 Pillow
@@ -27,3 +27,6 @@ imagecodecs
 timm==0.9.6
 geojson
 pylibCZIrw
+numpy==1.24.4
+zarr==2.18.3
+numcodecs==0.10.2
