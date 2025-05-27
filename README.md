@@ -8,7 +8,7 @@ For training code, please check the [hover-next training repository](https://git
 
 Find the Publication here: [https://openreview.net/pdf?id=3vmB43oqIO](https://openreview.net/pdf?id=3vmB43oqIO)
 
-This is an updated version for the manuscript:
+This is an updated version of the Hover-NeXt code for the manuscript:
 "AI-detected tumor-infiltrating lymphocytes for predicting outcomes in anti-PD1 based treated melanoma."
 
 The weights from this model are created on an updated version of the Panoptic Segmentation of nUclei and tissue in advanced MelanomA (PUMA) dataset. 
