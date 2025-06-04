@@ -12,7 +12,8 @@ This is an updated version of the Hover-NeXt code for the manuscript:
 "AI-detected tumor-infiltrating lymphocytes for predicting outcomes in anti-PD1 based treated melanoma."
 
 The weights from this model are created on an updated version of the Panoptic Segmentation of nUclei and tissue in advanced MelanomA (PUMA) dataset. 
-Find the publication of the PUMA dataset here: [PUMA dataset - GigaScience](https://doi.org/10.1093/gigascience/giaf011)
+Find the publication of the PUMA dataset here: [PUMA dataset - GigaScience](https://doi.org/10.1093/gigascience/giaf011).
+
 To use the weights, specify the checkpoint as "puma_convnextv2_base".
 
 ## Setup
