@@ -13,6 +13,7 @@ This is an updated version of the Hover-NeXt code for the manuscript:
 
 The weights from this model are created on an updated version of the Panoptic Segmentation of nUclei and tissue in advanced MelanomA (PUMA) dataset. 
 Find the publication of the PUMA dataset here: [PUMA dataset - GigaScience](https://doi.org/10.1093/gigascience/giaf011)
+To use the weights, specify the checkpoint as "puma_convnextv2_base".
 
 ## Setup
 
@@ -35,7 +36,7 @@ By specifying one of the ID's listed, weights are **automatically** downloaded a
 | PanNuke | "pannuke_convnextv2_tiny_1"  | [Tiny Fold 1](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_1.zip?download=1) |
 |   | "pannuke_convnextv2_tiny_2"  | [Tiny Fold 2](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_2.zip?download=1) |
 |   | "pannuke_convnextv2_tiny_3"  | [Tiny Fold 3](https://zenodo.org/records/10635618/files/pannuke_convnextv2_tiny_3.zip?download=1) |
-|   | "puma_convnextv2_base"     | [Base](https://zenodo.org/records/15526308) |
+|  Melanoma | "puma_convnextv2_base"     | [Base](https://zenodo.org/records/15526308) |
 
 If you are manually downloading weights, unzip them in the directory, such that the folder (e.g. ```lizard_convnextv2_large```) sits in the same directory as ```main.py```.
 
