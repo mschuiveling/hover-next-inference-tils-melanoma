@@ -175,7 +175,6 @@ year={2025},
 article={giaf011},
 doi={10.1093/gigascience/giaf011}
 }
-
 ```
 
 and 
@@ -190,6 +189,6 @@ and
   note      = {Published online October 16, 2025},
   doi       = {10.1001/jamaoncol.2025.4072}
 }
-
 ```
+
 
