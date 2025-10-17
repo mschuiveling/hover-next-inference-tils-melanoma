@@ -175,4 +175,21 @@ year={2025},
 article={giaf011},
 doi={10.1093/gigascience/giaf011}
 }
+
 ```
+
+and 
+
+
+```
+@article{schuiveling2025tils,
+  author    = {Mark Schuiveling and Isabella A. J. van Duin and Laurens S. ter Maat and Janneke C. van der Weerd and Rik J. Verheijden and Franchette van den Berkmortel and Christian U. Blank and Gerben E. Breimer and Femke H. Burgers and Marye Boers-Sonderen and Alfons J. M. van den Eertwegh and Jan Willem B. de Groot and John B. A. G. Haanen and Geke A. P. Hospers and Ellen Kapiteijn and Djura Piersma and Gerard Vreugdenhil and Hans Westgeest and Anne M. R. Schrader and Josien P. W. Pluim and Paul J. van Diest and Mitko Veta and Karijn P. M. Suijkerbuijk and Willeke A. M. Blokx},
+  title     = {Artificial Intelligence--Detected Tumor-Infiltrating Lymphocytes and Outcomes in Anti--PD-1--Based Treated Melanoma},
+  journal   = {JAMA Oncology},
+  year      = {2025},
+  note      = {Published online October 16, 2025},
+  doi       = {10.1001/jamaoncol.2025.4072}
+}
+
+```
+
